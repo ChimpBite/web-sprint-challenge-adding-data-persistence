@@ -14,7 +14,7 @@ router.get('/', (req, res, next) => {
     .catch(next);
 });
 
-// POST /api/Resources
+// POST /api/resources
 router.post('/', (req, res, next) => {
   const resource = req.body;
 
