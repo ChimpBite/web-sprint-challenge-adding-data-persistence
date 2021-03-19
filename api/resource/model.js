@@ -7,7 +7,11 @@ function getAll() {
 
 function findById(resource_id) {
   return db('resources')
-    .select('resources.resource_name', 'resources.resource_description')
+    .select(
+      'resources.resource_id',
+      'resources.resource_name',
+      'resources.resource_description'
+    )
     .where('resources.resource_id', resource_id);
 }
 
