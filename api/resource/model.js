@@ -2,5 +2,9 @@
 const db = require('../../data/db-config');
 
 function getAllResources() {
-  return db('resources');
+  return db('resources').select('*');
 }
+
+module.exports = {
+  getAllResources,
+};
