@@ -1,12 +1,12 @@
 // build your server here and require it from index.js
 const express = require('express');
 
-// const RecipeRouter = require('./router/router');
+const ResourceRouter = require('./resource/router');
 
 const server = express();
 
 server.use(express.json());
 
-// server.use('/api/recipes', RecipeRouter);
+server.use('/api/resources', ResourceRouter);
 
 module.exports = server;
