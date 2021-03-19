@@ -1,31 +1,41 @@
 // build your `Project` model here
 const db = require('../../data/dbConfig');
 
-function getAll() {
-  return db('projects').select(
-    'projects.project_id',
-    'projects.project_name',
-    'projects.project_description',
-    'projects.project_completed'
-  );
-}
+const getAll = async () => {
+  try {
+    const project = await db('projects');
+    return project.map((project) =>
+      project.project_completed === 0
+        ? { ...project, project_completed: false }
+        : { ...project, project_completed: true }
+    );
+  } catch (err) {
+    console.log(err);
+  }
+};
 
-function findById(project_id) {
-  return db('projects')
-    .select(
-      'projects.project_id',
-      'projects.project_name',
-      'projects.project_description',
-      'projects.project_completed'
-    )
-    .where('projects.project_id', project_id);
-}
+const findById = async (project_id) => {
+  try {
+    const project = await db('projects')
+      .where({ project_id: project_id })
+      .first();
+    return {
+      ...project,
+      project_completed: project.project_completed === 0 ? false : true,
+    };
+  } catch (err) {
+    console.log(err);
+  }
+};
 
-function create(project) {
-  return db('projects')
-    .insert(project)
-    .then(([project_id]) => findById(project_id));
-}
+const create = async (project) => {
+  try {
+    const newProject = await db('projects').insert(project);
+    return findById(newProject[0]);
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 module.exports = {
   getAll,

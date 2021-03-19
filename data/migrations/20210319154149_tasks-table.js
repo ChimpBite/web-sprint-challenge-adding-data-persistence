@@ -3,7 +3,7 @@ exports.up = function (knex) {
     tbl.increments('task_id');
     tbl.text('task_description').notNull();
     tbl.text('task_notes');
-    tbl.boolean('task_completed').notNull().defaultTo(0);
+    tbl.boolean('task_completed').notNull().defaultTo(false);
     tbl
       .integer('project_id')
       .references('project_id')

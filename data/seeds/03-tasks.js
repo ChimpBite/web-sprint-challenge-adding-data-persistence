@@ -8,19 +8,19 @@ exports.seed = function (knex) {
         {
           task_description: 'Set up react store',
           task_notes: 'required to store values',
-          task_completed: 0,
+          task_completed: false,
           project_id: 1,
         },
         {
           task_description: 'Get msfs sdk node connecting',
           task_notes: '',
-          task_completed: 0,
+          task_completed: false,
           project_id: 2,
         },
         {
           task_description: 'Find testers',
           task_notes: '',
-          task_completed: 0,
+          task_completed: false,
           project_id: 3,
         },
       ]);

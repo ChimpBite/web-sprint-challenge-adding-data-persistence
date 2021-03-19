@@ -8,17 +8,17 @@ exports.seed = function (knex) {
         {
           project_name: 'CodeCrack',
           project_description: 'React/Redux Match Game',
-          project_completed: 0,
+          project_completed: false,
         },
         {
           project_name: 'ACARS',
           project_description: 'Electron/Javascript ACARS for MSFS 2020',
-          project_completed: 0,
+          project_completed: false,
         },
         {
           project_name: 'Chat App',
           project_description: 'Electron/Javascript Chat App',
-          project_completed: 0,
+          project_completed: false,
         },
       ]);
     });
