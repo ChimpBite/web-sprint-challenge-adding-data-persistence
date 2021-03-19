@@ -6,23 +6,27 @@ const Resources = require('./model');
 const router = express.Router();
 
 // GET /api/resources/
-router.get('/', (req, res, next) => {
-  Resources.getAll()
-    .then((resources) => {
+router.get('/', async (req, res, next) => {
+  try {
+    Resources.getAll().then((resources) => {
       res.json(resources);
-    })
-    .catch(next);
+    });
+  } catch (err) {
+    next(err);
+  }
 });
 
 // POST /api/resources
-router.post('/', (req, res, next) => {
-  const resource = req.body;
+router.post('/', async (req, res, next) => {
+  try {
+    const resource = req.body;
 
-  Resources.create(resource)
-    .then((resource) => {
+    Resources.create(resource).then((resource) => {
       res.status(201).json(resource);
-    })
-    .catch(next);
+    });
+  } catch (err) {
+    next(err);
+  }
 });
 
 module.exports = router;
