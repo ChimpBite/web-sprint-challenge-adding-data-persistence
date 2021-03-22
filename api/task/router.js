@@ -3,26 +3,34 @@ const express = require('express');
 
 const Tasks = require('./model');
 
+const { checkTaskPayload } = require('../middleware/middleware');
+
 const router = express.Router();
 
 // GET /api/tasks/
-router.get('/', (req, res, next) => {
-  Tasks.getAll()
-    .then((tasks) => {
+router.get('/', async (req, res, next) => {
+  try {
+    Tasks.getAll().then((tasks) => {
       res.json(tasks);
-    })
-    .catch(next);
+    });
+  } catch (err) {
+    console.log(err);
+    next(err);
+  }
 });
 
 // POST /api/tasks
-router.post('/', (req, res, next) => {
-  const task = req.body;
+router.post('/', checkTaskPayload, async (req, res, next) => {
+  try {
+    const task = req.body;
 
-  Tasks.create(task)
-    .then((task) => {
+    Tasks.create(task).then((task) => {
       res.status(201).json(task);
-    })
-    .catch(next);
+    });
+  } catch (err) {
+    console.log(err);
+    next(err);
+  }
 });
 
 module.exports = router;

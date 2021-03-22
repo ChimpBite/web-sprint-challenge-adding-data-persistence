@@ -11,13 +11,11 @@ const getAll = async () => {
 
 const findById = async (resource_id) => {
   try {
-    return await db('resources')
-      .select(
-        'resources.resource_id',
-        'resources.resource_name',
-        'resources.resource_description'
-      )
-      .where('resources.resource_id', resource_id);
+    const resource = await db('resources')
+      .select('resources.resource_name')
+      .where({ resource_id: resource_id })
+      .first();
+    return resource;
   } catch (err) {
     console.log(err);
   }
@@ -25,9 +23,8 @@ const findById = async (resource_id) => {
 
 const create = async (resource) => {
   try {
-    return await db('resources')
-      .insert(resource)
-      .then(([resource_id]) => findById(resource_id));
+    const resourceId = await db('resources').insert(resource).then(resource);
+    return findById(resourceId[0]);
   } catch (err) {
     console.log(err);
   }

@@ -5,6 +5,8 @@ const Resources = require('./model');
 
 const router = express.Router();
 
+const { checkNameUnique } = require('../middleware/middleware');
+
 // GET /api/resources/
 router.get('/', async (req, res, next) => {
   try {
@@ -17,7 +19,7 @@ router.get('/', async (req, res, next) => {
 });
 
 // POST /api/resources
-router.post('/', async (req, res, next) => {
+router.post('/', checkNameUnique, async (req, res, next) => {
   try {
     const resource = req.body;
 
