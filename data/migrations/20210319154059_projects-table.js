@@ -6,7 +6,6 @@ exports.up = function (knex) {
     tbl.boolean('project_completed').notNull().defaultTo(false);
   });
 };
-
 exports.down = function (knex) {
-  return knex.schema.droptable('projects');
+  return knex.schema.dropTableIfExists('projects');
 };

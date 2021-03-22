@@ -1,6 +1,6 @@
 exports.up = function (knex) {
-  return knex.schema.createTable('projectresources', (tbl) => {
-    tbl.increments('projectresource_id');
+  return knex.schema.createTable('project_resources', (tbl) => {
+    tbl.increments('project_resource_id').notNull();
     tbl
       .integer('project_id')
       .references('project_id')
@@ -15,7 +15,6 @@ exports.up = function (knex) {
       .onUpdate('CASCADE');
   });
 };
-
 exports.down = function (knex) {
-  return knex.schema.droptable('projectresources');
+  return knex.schema.dropTableIfExists('project_resources');
 };

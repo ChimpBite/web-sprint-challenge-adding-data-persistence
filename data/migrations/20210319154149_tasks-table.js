@@ -1,9 +1,9 @@
 exports.up = function (knex) {
   return knex.schema.createTable('tasks', (tbl) => {
-    tbl.increments('task_id');
+    tbl.increments('task_id').notNull();
     tbl.text('task_description').notNull();
     tbl.text('task_notes');
-    tbl.boolean('task_completed').notNull().defaultTo(false);
+    tbl.boolean('task_completed').notNull().defaultTo(0);
     tbl
       .integer('project_id')
       .references('project_id')
@@ -12,7 +12,6 @@ exports.up = function (knex) {
       .onUpdate('CASCADE');
   });
 };
-
 exports.down = function (knex) {
-  return knex.schema.droptable('task');
+  return knex.schema.dropTableIfExists('task');
 };
