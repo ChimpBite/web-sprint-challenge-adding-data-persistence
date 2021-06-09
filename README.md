@@ -113,6 +113,17 @@ After finishing your required elements, you can push your work further. These go
 Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics. You might prepare by writing down your own answers before hand.
 
 1. Explain the difference between Relational Databases and SQL.
+
+Relational Database stores information, SQL querys the database for the stored information
+
 2. Why do tables need a Primary Key?
+
+because it provides a unique identifier for each row
+
 3. What is the name given to a table column that references the Primary Key on another table?
+
+Foreign Key
+
 4. What do we need in order to have a _many to many_ relationship between two tables?
+
+a table with multiple records that are associated with multiple records from another table
